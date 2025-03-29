@@ -5,7 +5,7 @@ Attempt to create an operating system from scratch following https://hexgeosys.u
 
 To compile : 
 ```
-nasm -f bin ./boot.asm -o ./boot.bin
+make
 ```
 
 Execute on qemu :
