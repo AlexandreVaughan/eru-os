@@ -3,9 +3,12 @@ ERU OS
 
 Attempt to create an operating system from scratch following https://hexgeosys.udemy.com/course/developing-a-multithreaded-kernel-from-scratch/
 
+Install cross compiler by following the instructions here : https://wiki.osdev.org/GCC_Cross-Compiler
+
+
 To compile : 
 ```
-make
+./build.sh
 ```
 
 Execute on qemu :
