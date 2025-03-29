@@ -10,11 +10,11 @@ make
 
 Execute on qemu :
 ```
-qemu-system-x86_64 -hda ./boot.bin
+qemu-system-x86_64 -hda ./bin/boot.bin
 ```
 
 Copy on bootable disk:
 ```
-sudo dd if=./boot.bin of=/dev/sdb 
+sudo dd if=./bin/boot.bin of=/dev/sdb 
 ```
 
