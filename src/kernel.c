@@ -2,38 +2,33 @@
 
 #include <stdint.h>
 #include <stddef.h>
-typedef char Byte;
-typedef Byte* ByteArray;
+#include "memory/memory.h"
+#include "idt/idt.h"
 
-typedef uint16_t Word;
-typedef Word* WordArray;
+typedef uint16_t* uint16_array;
 
-typedef int Int32;
+uint16_array video_mem = 0;
+int32_t terminal_current_row = 0;
+int32_t terminal_current_col = 0;
 
-
-
-WordArray video_mem = 0;
-Int32 terminal_current_row = 0;
-Int32 terminal_current_col = 0;
-
-Word terminal_make_char(Byte asciiChar, Byte colour) 
+uint16_t terminal_make_char(char asciiChar, byte colour) 
 {
     return (colour << 8) | asciiChar;
 }
 
-void terminal_putchar(Int32 x, Int32 y, Byte asciiChar, Byte colour)
+void terminal_putchar(int32_t x, int32_t y, char asciiChar, byte colour)
 {
     video_mem[(y*VGA_WIDTH) + x] = terminal_make_char(asciiChar, colour);
 }
 
 void terminal_initialize() 
 {
-    video_mem = (WordArray)(0xb8000);
+    video_mem = (uint16_array)(0xb8000);
     terminal_current_row = 0;
     terminal_current_col = 0;
-    for (Int32 y = 0; y < VGA_HEIGHT; y++) 
+    for (int32_t y = 0; y < VGA_HEIGHT; y++) 
     {
-        for (Int32 x = 0; x < VGA_WIDTH; x++) 
+        for (int32_t x = 0; x < VGA_WIDTH; x++) 
         {
             terminal_putchar(x,y,' ', 0);
         }
@@ -51,7 +46,7 @@ void terminal_newline()
 
 }
 
-void terminal_writechar(Byte asciiChar, Byte colour)
+void terminal_writechar(char asciiChar, byte colour)
 {
     if (asciiChar == '\n')
     {
@@ -91,4 +86,11 @@ void kernel_main()
 {
     terminal_initialize();
     print("Welcome to ERU OS\nVersion 0.0.1");
+
+    // initialize interrupts
+    idt_init();
+
+    int i = 0;
+    int x = 1/i;
+    x++;
 }
