@@ -18,16 +18,21 @@ To compile :
 ./build.sh
 ```
 
+To clean :
+```
+make clean
+```
+
 Execution
 ----------
 
 Execute on qemu :
 ```
-qemu-system-x86_64 -hda ./bin/boot.bin
+qemu-system-x86_64 -hda ./bin/os.bin
 ```
 
 Copy on bootable disk:
 ```
-sudo dd if=./bin/boot.bin of=/dev/sdb 
+sudo dd if=./bin/os.bin of=/dev/sdb 
 ```
 
