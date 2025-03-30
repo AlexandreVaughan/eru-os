@@ -1,3 +1,4 @@
+# kernel.asm should always be the first file (for alignment reasons)
 FILES = ./build/kernel.asm.o
 
 all: ./bin/boot.bin ./bin/kernel.bin
