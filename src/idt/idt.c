@@ -21,8 +21,6 @@ void idt_set(int interrupt_no, mem_ptr address)
     desc->zero = 0x00;
     desc->type_attr = 0xee;
     desc->offset_2 = (uint32_t) address >> 16;
-
-
 }
 
 void idt_init()

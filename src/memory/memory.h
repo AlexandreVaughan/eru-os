@@ -2,11 +2,8 @@
 #define MEMORY_H
 
 #include <stddef.h>
+#include "types.h"
 
-typedef void* mem_ptr;
-typedef int mem_byte_value;
-typedef char byte;
-typedef byte* byte_array;
 
 mem_ptr memset(mem_ptr ptr, mem_byte_value val, size_t size);
 

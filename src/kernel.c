@@ -3,7 +3,9 @@
 #include <stdint.h>
 #include <stddef.h>
 #include "memory/memory.h"
+#include "types.h"
 #include "idt/idt.h"
+#include "io/io.h"
 
 typedef uint16_t* uint16_array;
 
@@ -43,7 +45,6 @@ void terminal_newline()
     {
         terminal_current_row = 0;
     }
-
 }
 
 void terminal_writechar(char asciiChar, byte colour)
@@ -90,7 +91,5 @@ void kernel_main()
     // initialize interrupts
     idt_init();
 
-    int i = 0;
-    int x = 1/i;
-    x++;
+    outb(0x60,0xff);
 }

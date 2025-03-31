@@ -1,6 +1,5 @@
 #include "memory.h"
 
-
 mem_ptr memset(mem_ptr ptr, mem_byte_value val, size_t size)
 {
     byte_array byte_ptr = (byte_array)ptr;
@@ -8,6 +7,5 @@ mem_ptr memset(mem_ptr ptr, mem_byte_value val, size_t size)
     {
         byte_ptr[i]=val;
     }
-
     return ptr;
 }

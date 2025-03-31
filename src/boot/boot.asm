@@ -128,7 +128,7 @@ ata_lba_read:
     ; end reading sectors into memory
     ret
 
-
+; padding to fill one sector
 times 510-($ - $$) db 0 
 dw 0xAA55
 
