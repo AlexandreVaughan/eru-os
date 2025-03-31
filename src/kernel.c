@@ -91,5 +91,5 @@ void kernel_main()
     // initialize interrupts
     idt_init();
 
-    outb(0x60,0xff);
+
 }
