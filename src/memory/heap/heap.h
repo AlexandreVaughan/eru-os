@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include "types.h"
+#include "status.h"
 
 #define HEAP_BLOCK_TABLE_ENTRY_TAKEN 0x01
 #define HEAP_BLOCK_TABLE_ENTRY_FREE  0x00
