@@ -3,6 +3,7 @@
 
 typedef void* mem_ptr;
 typedef int mem_byte_value;
+typedef int ret_code;
 typedef char byte;
 typedef unsigned char ubyte;
 typedef unsigned short uword;
