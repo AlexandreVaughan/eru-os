@@ -8,5 +8,7 @@ typedef int ret_code;
 #define EIO 1
 // invalid argument
 #define EINVARG 2
+// no more memory
+#define ENOMEM 3
 
 #endif

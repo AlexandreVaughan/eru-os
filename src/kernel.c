@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include "memory/memory.h"
+#include "memory/heap/kheap.h"
 #include "types.h"
 #include "idt/idt.h"
 #include "io/io.h"
@@ -88,8 +89,19 @@ void kernel_main()
     terminal_initialize();
     print("Welcome to ERU OS\nVersion 0.0.1");
 
+    // initialize the heap
+    kheap_init();
+
     // initialize interrupts
     idt_init();
 
+    // mem_ptr ptr = kmalloc(50);
+    // mem_ptr ptr2 = kmalloc(5000);
+    // mem_ptr ptr3 = kmalloc(5600);
+    // kfree(ptr);
+    // mem_ptr ptr4 = kmalloc(50);
+    // if (ptr || ptr2 || ptr3 || ptr4)
+    // {
+    // }    
 
 }

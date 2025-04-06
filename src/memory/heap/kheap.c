@@ -20,3 +20,13 @@ void kheap_init()
         print("Failed to create heap");
     }
 }
+
+mem_ptr kmalloc(size_t size)
+{
+    return heap_malloc(&kernel_heap,size);
+}
+
+void kfree(mem_ptr ptr)
+{
+    return heap_free(&kernel_heap,ptr);
+}
