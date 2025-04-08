@@ -31,8 +31,6 @@ _start:
     out 0x21, al
     ; end of remap master PIC
 
-    ; enable interrupts
-    sti
     
     call kernel_main
 

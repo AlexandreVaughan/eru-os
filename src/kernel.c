@@ -95,6 +95,8 @@ void kernel_main()
     // initialize interrupts
     idt_init();
 
+    enable_interrupts();
+
     // mem_ptr ptr = kmalloc(50);
     // mem_ptr ptr2 = kmalloc(5000);
     // mem_ptr ptr3 = kmalloc(5600);
