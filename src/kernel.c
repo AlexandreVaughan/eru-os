@@ -4,9 +4,11 @@
 #include <stddef.h>
 #include "memory/memory.h"
 #include "memory/heap/kheap.h"
+#include "memory/paging/paging.h"
 #include "types.h"
 #include "idt/idt.h"
 #include "io/io.h"
+
 
 typedef uint16_t* uint16_array;
 
@@ -84,6 +86,8 @@ void print(const char* str)
     }
 }
 
+
+struct paging_4gb_chunk* kernel_chunk = 0;
 void kernel_main()
 {
     terminal_initialize();
@@ -95,15 +99,15 @@ void kernel_main()
     // initialize interrupts
     idt_init();
 
+    // setup paging
+    kernel_chunk = paging_new_4gb(PAGING_IS_WRITABLE | PAGING_IS_PRESENT | PAGING_ACCESS_FROM_ALL);
+    paging_switch(paging_4gb_chunk_get_directory(kernel_chunk));
+    enable_paging();
+
+
+
     enable_interrupts();
 
-    // mem_ptr ptr = kmalloc(50);
-    // mem_ptr ptr2 = kmalloc(5000);
-    // mem_ptr ptr3 = kmalloc(5600);
-    // kfree(ptr);
-    // mem_ptr ptr4 = kmalloc(50);
-    // if (ptr || ptr2 || ptr3 || ptr4)
-    // {
-    // }    
+  
 
 }
