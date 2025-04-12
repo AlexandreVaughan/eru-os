@@ -2,6 +2,7 @@
     "files.associations": {
         "stdbool.h": "c",
         "types.h": "c",
-        "kheap.h": "c"
+        "kheap.h": "c",
+        "status.h": "c"
     }
 }

@@ -1,5 +1,7 @@
  #include "paging.h"
  #include "memory/heap/kheap.h"
+ #include "status.h"
+
 
 void paging_load_directory(uint32_t *directory);
 
@@ -17,6 +19,7 @@ struct paging_4gb_chunk* paging_new_4gb(uint8_t flags)
             entry[j] = (offset + j*PAGING_PAGE_SIZE) | flags;
         }
         offset += PAGING_TOTAL_ENTRIES_PER_TABLE*PAGING_PAGE_SIZE;
+        // this works because we're aligned to 4Kb
         directory[i] = (uint32_t)entry | flags | PAGING_IS_WRITABLE;
     }
 
@@ -34,4 +37,44 @@ void paging_switch(uint32_t *directory)
 uint32_t* paging_4gb_chunk_get_directory(struct paging_4gb_chunk *chunk)
 {
     return chunk->directory_entry;
+}
+
+bool paging_is_aligned(mem_ptr address)
+{
+    return ((uint32_t)address % PAGING_PAGE_SIZE) == 0;
+}
+
+ret_code paging_get_indexes(mem_ptr virtual_address, uint32_t *directory_index_out, uint32_t *table_index_out)
+{
+    if (!paging_is_aligned(virtual_address))
+    {
+        return -EINVARG;
+    }
+
+    *directory_index_out = ((uint32_t)virtual_address / (PAGING_TOTAL_ENTRIES_PER_TABLE*PAGING_PAGE_SIZE));
+    *table_index_out = ((uint32_t)virtual_address % (PAGING_TOTAL_ENTRIES_PER_TABLE*PAGING_PAGE_SIZE) / PAGING_PAGE_SIZE);
+    return 0;
+
+}
+
+ret_code paging_set(uint32_t *directory, mem_ptr virtual_address, uint32_t physical_address)
+{
+    if (!paging_is_aligned(virtual_address))
+    {
+        return -EINVARG;
+    }
+
+    uint32_t dir_index = 0;
+    uint32_t table_index = 0;
+
+    ret_code res = paging_get_indexes(virtual_address, &dir_index, &table_index);
+    if (res < 0)
+    {
+        return res;
+    }
+
+    uint32_t entry = directory[dir_index];
+    uint32_t *table = (uint32_t*)(entry & 0xfffff000); // this works because we're aligned to 4Kb
+    table[table_index]=physical_address;
+    return 0;
 }
