@@ -97,6 +97,9 @@ void kernel_main()
     // initialize the heap
     kheap_init();
 
+    // initialize disk
+    disk_search_and_init();
+
     // initialize interrupts
     idt_init();
 
@@ -104,9 +107,6 @@ void kernel_main()
     kernel_chunk = paging_new_4gb(PAGING_IS_WRITABLE | PAGING_IS_PRESENT | PAGING_ACCESS_FROM_ALL);
     paging_switch(paging_4gb_chunk_get_directory(kernel_chunk)); 
     enable_paging();
-
-    byte buf[512];
-    disk_read_sector(0,1, buf);
 
     enable_interrupts();
 

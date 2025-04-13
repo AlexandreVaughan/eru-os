@@ -1,10 +1,10 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define ERUOS_TOTAL_INTERRUPTS 0x200
-
 #define KERNEL_CODE_SELECTOR 0x08
 #define KERNEL_DATA_SELECTOR 0x10
+
+#define ERUOS_TOTAL_INTERRUPTS 0x200
 
 // 100MB
 #define ERUOS_HEAP_SIZE_BYTES 104857600 
@@ -14,4 +14,7 @@
 // see https://wiki.osdev.org/Memory_Map_(x86)
 #define ERUOS_HEAP_ADDRESS       0x01000000
 #define ERUOS_HEAP_TABLE_ADDRESS 0x00007E00
+
+#define ERUOS_HDD_SECTOR_SIZE 512
+
 #endif
