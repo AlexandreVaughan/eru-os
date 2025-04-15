@@ -17,4 +17,6 @@
 
 #define ERUOS_HDD_SECTOR_SIZE 512
 
+#define ERUOS_MAX_PATH 108
+
 #endif

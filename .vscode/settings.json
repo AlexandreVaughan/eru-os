@@ -3,6 +3,7 @@
         "stdbool.h": "c",
         "types.h": "c",
         "kheap.h": "c",
-        "status.h": "c"
+        "status.h": "c",
+        "memory.h": "c"
     }
 }

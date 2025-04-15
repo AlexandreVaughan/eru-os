@@ -5,10 +5,11 @@
 #include "memory/memory.h"
 #include "memory/heap/kheap.h"
 #include "memory/paging/paging.h"
-#include "types.h"
 #include "idt/idt.h"
 #include "io/io.h"
 #include "disk/disk.h"
+#include "string/string.h"
+#include "fs/pathparser.h"
 
 
 typedef uint16_t* uint16_array;
@@ -67,18 +68,7 @@ void terminal_writechar(char asciiChar, byte colour)
     }
 }
 
-size_t strlen(const char* str)
-{
-    size_t len = 0;
-    while (*str != 0)
-    {
-        len++;
-        str++;
-    }
-    return len;
-}
-
-void print(const char* str) 
+void print(const asciistring str) 
 {
     size_t len = strlen(str);
     for (size_t i = 0; i < len; ++i)
@@ -109,6 +99,12 @@ void kernel_main()
     enable_paging();
 
     enable_interrupts();
+
+    struct path_root * root = pathparser_parse("0:/bin/eru.ai",0);
+    if (root)
+    {
+        
+    }
 
   
 

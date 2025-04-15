@@ -10,5 +10,7 @@ typedef int ret_code;
 #define EINVARG 2
 // no more memory
 #define ENOMEM 3
+// wrong path format
+#define EBADPATH 4
 
 #endif
