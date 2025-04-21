@@ -10,6 +10,7 @@
 #include "disk/disk.h"
 #include "string/string.h"
 #include "fs/pathparser.h"
+#include "disk/diskstreamer.h"
 
 
 typedef uint16_t* uint16_array;
@@ -100,12 +101,12 @@ void kernel_main()
 
     enable_interrupts();
 
-    struct path_root * root = pathparser_parse("0:/bin/eru.ai",0);
-    if (root)
-    {
-        
-    }
-
+    // 0x45a = E0
+    struct disk_stream* stream = diskstreamer_new(0);
+    diskstreamer_seek(stream,0x45a);
+    byte b = 0;
+    diskstreamer_read(stream, &b, 1);  
+    while(b) {};
   
 
 }

@@ -4,6 +4,7 @@
         "types.h": "c",
         "kheap.h": "c",
         "status.h": "c",
-        "memory.h": "c"
+        "memory.h": "c",
+        "config.h": "c"
     }
 }
