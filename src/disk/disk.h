@@ -6,6 +6,8 @@
 #include "types.h"
 #include "status.h"
 
+#include "fs/file.h"
+
 typedef uint32_t eruos_disk_type;
 
 // real physical hard drive
@@ -15,6 +17,8 @@ struct disk
 {
     eruos_disk_type type;
     size_t sector_size;
+
+    struct filesystem* filesystem;
 };
 
 void disk_search_and_init();

@@ -41,6 +41,7 @@ void disk_search_and_init()
     memset(&primary_hdd,0,sizeof(primary_hdd));
     primary_hdd.type = ERUOS_DISK_TYPE_PHYSICAL_HDD;
     primary_hdd.sector_size = ERUOS_HDD_SECTOR_SIZE;
+    primary_hdd.filesystem = fs_resolve(&primary_hdd);
 }
 
 struct disk* disk_get(size_t index)
